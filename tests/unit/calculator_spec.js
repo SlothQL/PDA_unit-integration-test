@@ -37,7 +37,17 @@ describe('calculator', function () {
 
   it('it should be able click a number', function() {
     calculator.numberClick(5);
-    assert.equal(5, calculator.runningTotal);
+    calculator.numberClick(7);
+    calculator.numberClick(1);
+    assert.equal(571, calculator.runningTotal);
+  })
+
+  it('it should be able to click operator', function() {
+    calculator.numberClick(5);
+    calculator.operatorClick('+');
+    calculator.numberClick(5);
+    calculator.operatorClick('=');
+    assert.equal(10, calculator.runningTotal);
   })
 
 });
