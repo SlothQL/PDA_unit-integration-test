@@ -18,8 +18,9 @@ describe('calculator functionality', function() {
 
   it('the number buttons should update the display of running Total', function(){
     element(by.css('#number5')).click();
+    element(by.css('#number5')).click();
     running_total = element(by.css('#running_total'));
-    expect(running_total.getAttribute('value')).to.eventually.equal('5');
+    expect(running_total.getAttribute('value')).to.eventually.equal('55');
   })
 
   it('arithmetical operations should update the display with result', function() {
@@ -28,6 +29,16 @@ describe('calculator functionality', function() {
     element(by.css('#number5')).click();
     element(by.css('#operator_equals')).click();
     expect(running_total.getAttribute('value')).to.eventually.equal('10');
+  })
+
+  it('should be able to chain multiple operations together', function() {
+    element(by.css('#number5')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number2')).click();
+    element(by.css('#operator_add')).click();
+    element(by.css('#number1')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('11');
   })
 
 });
