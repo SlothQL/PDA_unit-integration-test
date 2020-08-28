@@ -71,4 +71,36 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('3950592');
   })
 
+  it('zero divided by number should return zero', function() {
+    element(by.css('#number0')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number5')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('0');
+  })
+
+  it('zero multiplied by number should return zero', function() {
+    element(by.css('#number0')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number9')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('0');
+  })
+
+  it('number multiplied by zero should return zero', function() {
+    element(by.css('#number2')).click();
+    element(by.css('#operator_multiply')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('0');
+  })
+
+  it('number divided by zero should return Error', function() {
+    element(by.css('#number9')).click();
+    element(by.css('#operator_divide')).click();
+    element(by.css('#number0')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('Error');
+  })
+
 });

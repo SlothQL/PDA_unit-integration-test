@@ -14,11 +14,11 @@ Calculator.prototype.subtract = function(number){
 }
 
 Calculator.prototype.multiply = function(number){
-  this.runningTotal = parseFloat(this.previousTotal) * parseFloat(number);
+    this.runningTotal = parseFloat(this.previousTotal) * parseFloat(number);
 }
 
 Calculator.prototype.divide = function(number){
-  this.runningTotal = parseFloat(this.previousTotal) / parseFloat(number);
+    this.runningTotal = parseFloat(this.previousTotal) / parseFloat(number);
 }
 
 Calculator.prototype.numberClick = function(number){
@@ -49,10 +49,14 @@ Calculator.prototype.operatorClick = function(operator){
       this.subtract(this.runningTotal);
       break;
       case ('*'):
-      this.multiply(this.runningTotal);
+        this.multiply(this.runningTotal);
       break;
       case ('/'):
-      this.divide(this.runningTotal);
+        if (this.runningTotal == 0) {
+          this.runningTotal = 'Error';
+        } else {
+        this.divide(this.runningTotal);
+        }
       break;
     }
   }
@@ -60,7 +64,13 @@ Calculator.prototype.operatorClick = function(operator){
   // if the 'equals' button was clicked, clear the previous operator, otherwise
   // record what the previous operator was
   if (operator == '=') {
+    if (this.previousTotal == 0) {
+      this.runningTotal = 0;
+    } else if (this.runningTotal == 0) {
+      this.runningTotal = 0;
+    }
     this.previousOperator = null;
+
   } else {
     this.previousOperator = operator;
   }
