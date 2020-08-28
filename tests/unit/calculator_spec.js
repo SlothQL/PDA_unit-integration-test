@@ -42,12 +42,22 @@ describe('calculator', function () {
     assert.equal(571, calculator.runningTotal);
   })
 
-  it('it should be able to click operator', function() {
+  it('it should be able to chain multiple operations', function() {
     calculator.numberClick(5);
     calculator.operatorClick('+');
     calculator.numberClick(5);
     calculator.operatorClick('=');
     assert.equal(10, calculator.runningTotal);
+  })
+
+  it('it should be able to clear running total without affecting calculation', function() {
+    calculator.numberClick(2);
+    calculator.operatorClick('+');
+    calculator.numberClick(5);
+    calculator.clearClick();
+    calculator.numberClick(2);
+    calculator.operatorClick('=');
+    assert.equal(4, calculator.runningTotal);
   })
 
 });
