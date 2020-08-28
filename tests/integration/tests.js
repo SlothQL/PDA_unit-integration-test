@@ -16,4 +16,18 @@ describe('calculator functionality', function() {
     expect(running_total.getAttribute('value')).to.eventually.equal('2')
   })
 
+  it('the number buttons should update the display of running Total', function(){
+    element(by.css('#number5')).click();
+    running_total = element(by.css('#running_total'));
+    expect(running_total.getAttribute('value')).to.eventually.equal('5');
+  })
+
+  it('arithmetical operations should update the display with result', function() {
+    element(by.css('#number5')).click();
+    element(by.css('#operator_add')).click();
+    element(by.css('#number5')).click();
+    element(by.css('#operator_equals')).click();
+    expect(running_total.getAttribute('value')).to.eventually.equal('10');
+  })
+
 });
